@@ -27,7 +27,7 @@ const Cta = (props: Cta) => {
     <a
       href={url}
       className={`${display} text-${fontColor} py-4 px-6 text-2xl font-bold rounded-lg border-4 border-gray-800 hover:cursor-pointer`}
-      style={{ background: backgroundColor }}
+      style={{ background: backgroundColor, color: fontColor }}
       onMouseOver={MouseOver}
       onMouseOut={MouseOut}
       rel="noopener noreferrer"
