@@ -1,19 +1,35 @@
 import * as React from "react";
 
 type Cta = {
+  display?: string;
   buttonText: string;
   url: string;
-  color: string;
+  backgroundColor?: string;
+  backgroundHover?: string;
+  fontColor?: string;
+  fontHoverColor?: string;
+  hoverFont?: string;
 };
 
 const Cta = (props: Cta) => {
-  const { buttonText, url, color } = props;
+  const { display, buttonText, url, backgroundColor, backgroundHover, fontColor, fontHoverColor } = props;
+
+  function MouseOver(event:any) {
+    event.target.style.background = backgroundHover;
+    event.target.style.color = fontHoverColor;
+  }
+  function MouseOut(event:any){
+    event.target.style.background = backgroundColor;
+    event.target.style.color = fontColor;
+  }  
 
   return (
     <a
       href={url}
-      className={'py-4 px-6 text-base font-bold text-white rounded-lg hover:scale-105'}
-      style={{ background: color ? color : '#000000' }}
+      className={`${display} text-${fontColor} py-4 px-6 text-2xl font-bold rounded-lg border-4 border-gray-800 hover:cursor-pointer`}
+      style={{ background: backgroundColor }}
+      onMouseOver={MouseOver}
+      onMouseOut={MouseOut}
       target="_blank"
       rel="noopener noreferrer"
     >

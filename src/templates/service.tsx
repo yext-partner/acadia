@@ -33,14 +33,15 @@
    HeadConfig,
  } from "@yext/yext-sites-scripts";
  
- /**
-  * Required when Knowledge Graph data is used for a template.
-  */
+
  export const config: TemplateConfig = {
    stream: {
      $id: "services-stream",
-     // Specifies the exact data that each generated document will contain. This data is passed in
-     // directly as props to the default exported function.
+     filter: {
+      savedFilterIds: [
+        '935268770'
+      ],
+    },
      fields: [
        "id",
        "uid",
@@ -54,13 +55,6 @@
        "c_parentTopic.slug",
        "c_parentTopic.id",
      ],
-     // Defines the scope of entities that qualify for this stream.
-     filter: {
-       savedFilterIds: [
-         '935268770'
-       ],
-     },
-     // The entity language profiles that documents will be generated for.
      localization: {
        locales: ["en"],
        primary: false,
@@ -68,22 +62,10 @@
    },
  };
  
- /**
-  * Defines the path that the generated file will live at for production.
-  *
-  * NOTE: This currently has no impact on the local dev path. Local dev urls currently
-  * take on the form: featureName/entityId
-  */
  export const getPath: GetPath<TemplateProps> = (props) => {
-   return `${props.document.id.toString()}`;
+   return `${props.document.slug.toString()}`;
  };
  
- /**
-  * This allows the user to define a function which will take in their template
-  * data and procude a HeadConfig object. When the site is generated, the HeadConfig
-  * will be used to generate the inner contents of the HTML document's <head> tag.
-  * This can include the title, meta tags, script tags, etc.
-  */
  export const getHeadConfig: GetHeadConfig<TemplateProps> = (props): HeadConfig => {
    return {
      title: props.document.name,
@@ -100,15 +82,7 @@
    };
  };
  
- /**
-  * This is the main template. It can have any name as long as it's the default export.
-  * The props passed in here are the direct stream document defined by `config`.
-  *
-  * There are a bunch of custom components being used from the src/components folder. These are
-  * an example of how you could create your own. You can set up your folder structure for custom
-  * components any way you'd like as long as it lives in the src folder (though you should not put
-  * them in the src/templates folder as this is specific for true template files).
-  */
+
  const Service: Default<TemplateProps> = (props) => {
    const { document } = props;
    const {
@@ -130,7 +104,7 @@
    return (
      <>
        <body className="font-main">
-         <Header name={name} primaryColor={_site.c_primaryColor} secondaryColor={_site.c_secondaryColor} logo={_site.c_logoURL} address={_site.c_relatedFacility[0].address}></Header>
+         <Header site={_site}></Header>
            <div className="centered-container">
             <div className="breadcrumbs flex space-x-5 py-5">
               <a href="/" className="font-semibold hover:underline">Home</a>

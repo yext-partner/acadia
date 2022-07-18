@@ -2,7 +2,7 @@ import * as React from "react";
 import Cta from './cta';
 
 const FeaturedServices = (props: any) => {
-    const { name, services, address, phone } = props;
+    const { name, services, address, phone, backgroundColor } = props;
     services.forEach(function (service:any) {
         service.description = service.description.replace("{{name}}", name);
         service.description = service.description.replace("{{address.city}}", address.city);
@@ -11,12 +11,12 @@ const FeaturedServices = (props: any) => {
     });
 
     const serviceDivs = services.map((service:any) => (
-        <div className="grid gap-y-10 border-2 p-8 rounded-xl bg-gray-200 drop-shadow-lg">
+        <div className="grid gap-y-10 border-2 p-8 rounded-xl featured-service">
             <h3 className="text-2xl font-semibold text-center">{service.name}</h3>
             <div>{service.description}</div>
             <div className="text-center">
-                <div className="hover:scale-105">
-                    <Cta buttonText="More Information" url={service.slug} color="darkgrey"/>
+                <div className="py-5">
+                    <Cta buttonText="More Information" url={service.slug} backgroundColor="white" backgroundHover={backgroundColor} fontColor="black" fontHoverColor="white"/>
                 </div>
             </div>
         </div>

@@ -1,29 +1,13 @@
-/**
- * This is an example of how to create a template that makes use of streams data.
- * The stream data originates from Yext's Knowledge Graph. When a template in
- * concert with a stream is built by the Yext Sites system, a static html page
- * is generated for every corresponding (based on the filter) stream document.
- *
- * Another way to think about it is that a page will be generated using this
- * template for every eligible entity in your Knowledge Graph.
- */
-
  import * as React from "react";
  import Banner from "../components/banner";
  import Header from "../components/header";
  import Footer from "../components/footer";
- import Cta from "../components/cta";
- import List from "../components/list";
- import Hours from "../components/hours";
-
  import Promo from '../components/promo';
  import Doctors from '../components/doctors';
  import FeaturedServices from '../components/featured-services';
  import OfferedServices from '../components/offered-services';
  import Insurances from '../components/insurances';
- 
  import Markdown from 'markdown-to-jsx';
- 
  import "../index.css";
  import {
    Default,
@@ -34,12 +18,16 @@
    HeadConfig,
  } from "@yext/yext-sites-scripts";
  
- /**
-  * Required when Knowledge Graph data is used for a template.
-  */
+
+ // 
  export const config: TemplateConfig = {
    stream: {
      $id: "index-stream",
+     filter: {
+      savedFilterIds: [
+        '933983808'
+      ],
+    },
      fields: [
        'id',
        'uid',
@@ -60,15 +48,15 @@
        'c_featuredServices.name',
        'c_featuredServices.description',
        'c_featuredServices.slug',
-       'c_meetTheDoctors.name',
-       'c_meetTheDoctors.headshot',
-       'c_promotion',
+       'c_offeredServices.name',
+       'c_offeredServices.slug',
+       'c_offeredServices.c_subTopics.name',
+       'c_offeredServices.c_subTopics.slug',
+       'c_relatedDoctors.name',
+       'c_relatedDoctors.headshot',
+       'c_relatedDoctors.slug',
+       'c_promotion'
      ],
-     filter: {
-       savedFilterIds: [
-         '933983808'
-       ],
-     },
      localization: {
        locales: ["en"],
        primary: false,
@@ -76,22 +64,12 @@
    },
  };
  
-/**
- * Defines the path that the generated file will live at for production.
- *
- * NOTE: This currently has no impact on the local dev path. Local dev urls currently
- * take on the form: featureName/entityId
- */
+ // 
  export const getPath: GetPath<TemplateProps> = (props) => {
   return `index.html`;
 };
  
-/**
- * This allows the user to define a function which will take in their template
- * data and procude a HeadConfig object. When the site is generated, the HeadConfig
- * will be used to generate the inner contents of the HTML document's <head> tag.
- * This can include the title, meta tags, script tags, etc.
- */
+//
  export const getHeadConfig: GetHeadConfig<TemplateProps> = (props): HeadConfig => {
    return {
      title: props.document.name,
@@ -108,15 +86,7 @@
    };
  };
  
- /**
-  * This is the main template. It can have any name as long as it's the default export.
-  * The props passed in here are the direct stream document defined by `config`.
-  *
-  * There are a bunch of custom components being used from the src/components folder. These are
-  * an example of how you could create your own. You can set up your folder structure for custom
-  * components any way you'd like as long as it lives in the src folder (though you should not put
-  * them in the src/templates folder as this is specific for true template files).
-  */
+
  const Index: Default<TemplateProps> = (props) => {
    const { document } = props;
    const {
@@ -135,26 +105,26 @@
      c_secondaryColor,
      websiteUrl,
      c_featuredServices,
-     c_meetTheDoctors,
+     c_relatedDoctors,
+     c_offeredServices,
      c_promotion
    } = document;
-   console.log(document);
  
    return (
      <>
        <body className="fonty-main">
-         <Header name={name} primaryColor={_site.c_primaryColor} secondaryColor={_site.c_secondaryColor} logo={_site.c_logoURL} address={_site.c_relatedFacility[0].address}></Header>
-         <Banner name={name} secondaryColor="blue" photo={photoGallery[0].image.url} mainPhone={mainPhone}></Banner>
+         <Header site={_site}></Header>
+         <Banner name={name} color={_site.c_secondaryColor} photo={photoGallery[0].image.url} mainPhone={mainPhone}></Banner>
          {c_promotion && <Promo text={c_promotion}></Promo>}
           <div className="centered-container">
-            <Doctors doctors={c_meetTheDoctors}></Doctors>
-            <FeaturedServices name={name} services={c_featuredServices} address={address} phone={mainPhone}></FeaturedServices>
-            <OfferedServices services={_site.c_featuredServices}></OfferedServices>
+            <Doctors doctors={c_relatedDoctors}></Doctors>
+            <FeaturedServices name={name} services={c_featuredServices} address={address} phone={mainPhone} backgroundColor={_site.c_secondaryColor}></FeaturedServices>
+            <OfferedServices services={c_offeredServices} color={_site.c_secondaryColor}></OfferedServices>
             <Insurances list={insuranceAccepted}></Insurances>
             <div className="section space-y-5">
-            <Markdown className="space-y-5">{c_richTextDescription}</Markdown>
+              <Markdown className="space-y-5">{c_richTextDescription}</Markdown>
+            </div>
           </div>
-        </div>
          <Footer footer={_site.c_footer}></Footer>
        </body>
      </>

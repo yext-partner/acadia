@@ -2,21 +2,22 @@ import * as React from "react";
 import Cta from './cta';
 
 const OfferedServices = (props: any) => {
-    const { services } = props;
-
+    const { services, color } = props;
     services.sort();
-
-    const serviceDivs = (services) => {
+    const serviceDivs = (services:any) => {
         return (
-          <ul className="grid grid-cols-4 gap-y-7">
-            {services.map((service) => (
-              <li>
-                <div className="font-semibold text-lg">{service.name}</div>
+          <ul className="grid gap-y-7 md:grid-cols-2 lg:grid-cols-4">
+            {services.map((service:any) => (
+              <li className="">
+                <a className="font-semibold text-xl hover:underline" href={service.slug}>{service.name}</a>
                 <ul>
                   {service.c_subTopics && service.c_subTopics.length
-                    ? service.c_subTopics.map((topic) => (
-                        <li className="text-cyan-700">
-                          <a href={topic.slug} className="hover:underline">{topic.name}</a>
+                    ? service.c_subTopics.map((topic:any) => (
+                        <li className="">
+                          <a
+                            href={topic.slug}
+                            className="hover:underline"
+                            style={{ color: color }}>{topic.name}</a>
                         </li>
                       ))
                     : null}

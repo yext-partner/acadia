@@ -5,7 +5,7 @@ const Promo = (props:any) => {
   const { text } = props;
   return (
     <>
-        <div className="section py-10 text-center bg-yellow-100">
+        <div className="section p-10 text-center bg-yellow-100">
             <Markdown>{text}</Markdown>
         </div>
     </>
