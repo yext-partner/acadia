@@ -11,6 +11,7 @@
       "c_relatedFacility.name",
       "c_relatedFacility.address",
       "c_relatedFacility.mainPhone",
+      "c_relatedFacility.hours",
       "c_relatedFacility.c_offeredServices.name",
       "c_relatedFacility.c_offeredServices.slug",
       "c_header",
