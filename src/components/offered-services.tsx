@@ -9,14 +9,14 @@ const OfferedServices = (props: any) => {
           <ul className="grid gap-y-7 md:grid-cols-2 lg:grid-cols-4">
             {services.map((service:any) => (
               <li className="">
-                <a className="font-semibold text-xl hover:underline" href={service.slug}>{service.name}</a>
+                <a className="font-semibold text-black text-xl no-underline hover:underline" href={service.slug}>{service.name}</a>
                 <ul>
                   {service.c_subTopics && service.c_subTopics.length
                     ? service.c_subTopics.map((topic:any) => (
                         <li className="">
                           <a
                             href={topic.slug}
-                            className="hover:underline"
+                            className="no-underline hover:underline"
                             style={{ color: color }}>{topic.name}</a>
                         </li>
                       ))

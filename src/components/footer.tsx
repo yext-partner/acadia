@@ -18,7 +18,7 @@ const Footer = (props:any) => {
 
   const footerLinks = footer.map((link:any) => (
     <div>
-      <a key="uRL" href={link.uRL} className="hover:underline">
+      <a key="uRL" href={link.uRL} className="text-black no-underline hover:underline">
         {link.label}
       </a>
     </div>
@@ -26,7 +26,7 @@ const Footer = (props:any) => {
 
   services.sort();
   const serviceDivs = services.map((service:any) => (
-    <a className="text-black text-lg underline" href={service.slug}>{service.name}</a>
+    <a className="text-black text-lg no-underline hover:underline" href={service.slug}>{service.name}</a>
   ));
 
   var localizedAccessibility = accessibility;
