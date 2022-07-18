@@ -30,7 +30,6 @@ const Cta = (props: Cta) => {
       style={{ background: backgroundColor }}
       onMouseOver={MouseOver}
       onMouseOut={MouseOut}
-      target="_blank"
       rel="noopener noreferrer"
     >
       {buttonText}

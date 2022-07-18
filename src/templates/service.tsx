@@ -1,27 +1,16 @@
-/**
- * This is an example of how to create a template that makes use of streams data.
- * The stream data originates from Yext's Knowledge Graph. When a template in
- * concert with a stream is built by the Yext Sites system, a static html page
- * is generated for every corresponding (based on the filter) stream document.
- *
- * Another way to think about it is that a page will be generated using this
- * template for every eligible entity in your Knowledge Graph.
- */
-
- import * as React from "react";
+import * as React from "react";
  import Banner from "../components/banner";
  import Header from "../components/header";
  import Footer from "../components/footer";
  import Cta from "../components/cta";
  import List from "../components/list";
  import Hours from "../components/hours";
- 
  import Doctors from '../components/doctors';
  import Services from '../components/featured-services';
  import Insurances from '../components/insurances';
-
  import ReactMarkdown from 'react-markdown';
  import Markdown from 'markdown-to-jsx';
+ import { formatPhoneNumber } from 'react-phone-number-input';
  
  import "../index.css";
  import {
@@ -99,7 +88,7 @@
    updatedRTD = updatedRTD.replaceAll("{{name}}", _site.c_relatedFacility[0].name);
    updatedRTD = updatedRTD.replaceAll("{{address.city}}", _site.c_relatedFacility[0].address.city);
    updatedRTD = updatedRTD.replaceAll("{{address.region}}", _site.c_relatedFacility[0].address.region);
-   updatedRTD = updatedRTD.replaceAll("{{mainPhone}}", _site.c_relatedFacility[0].mainPhone);
+   updatedRTD = updatedRTD.replaceAll("{{mainPhone}}", formatPhoneNumber(_site.c_relatedFacility[0].mainPhone));
 
    return (
      <>
@@ -116,7 +105,7 @@
               <Markdown className="space-y-5">{updatedRTD}</Markdown>
             </div>
            </div>
-         <Footer footer={_site.c_footer}></Footer>
+         <Footer site={_site}></Footer>
        </body>
      </>
    );

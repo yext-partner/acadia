@@ -9,6 +9,7 @@ import Doctors from '../components/doctors';
 import Services from '../components/featured-services';
 import Insurances from '../components/insurances';
 import Markdown from 'markdown-to-jsx';
+import { formatPhoneNumber } from 'react-phone-number-input';
 
 import "../index.css";
 import {
@@ -84,7 +85,7 @@ const Campaign: Default<TemplateProps> = (props) => {
   updatedRTD = updatedRTD.replaceAll("{{name}}", _site.c_relatedFacility[0].name);
   updatedRTD = updatedRTD.replaceAll("{{address.city}}", _site.c_relatedFacility[0].address.city);
   updatedRTD = updatedRTD.replaceAll("{{address.region}}", _site.c_relatedFacility[0].address.region);
-  updatedRTD = updatedRTD.replaceAll("{{mainPhone}}", _site.c_relatedFacility[0].mainPhone);
+  updatedRTD = updatedRTD.replaceAll("{{mainPhone}}", formatPhoneNumber(_site.c_relatedFacility[0].mainPhone));
 
   // Photo Sourcesets
   var dynlUrl = photoGallery[0].image.url.replace("a.mktgcdn.com", "dynl.mktgcdn.com");
@@ -116,7 +117,7 @@ const Campaign: Default<TemplateProps> = (props) => {
               sizes="(max-width: 800px) 600px, 1200px"
             />  
           </div>
-        <Footer footer={_site.c_footer}></Footer>
+        <Footer site={_site}></Footer>
       </body>
     </>
   );

@@ -18,8 +18,6 @@
    HeadConfig,
  } from "@yext/yext-sites-scripts";
  
-
- // 
  export const config: TemplateConfig = {
    stream: {
      $id: "index-stream",
@@ -125,7 +123,7 @@
               <Markdown className="space-y-5">{c_richTextDescription}</Markdown>
             </div>
           </div>
-         <Footer footer={_site.c_footer}></Footer>
+         <Footer site={_site}></Footer>
        </body>
      </>
    );

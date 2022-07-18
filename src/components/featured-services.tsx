@@ -1,4 +1,5 @@
 import * as React from "react";
+import { formatPhoneNumber } from 'react-phone-number-input';
 import Cta from './cta';
 
 const FeaturedServices = (props: any) => {
@@ -7,7 +8,7 @@ const FeaturedServices = (props: any) => {
         service.description = service.description.replace("{{name}}", name);
         service.description = service.description.replace("{{address.city}}", address.city);
         service.description = service.description.replace("{{address.region}}", address.region);
-        service.description = service.description.replace("{{mainPhone}}", phone);
+        service.description = service.description.replace("{{mainPhone}}", formatPhoneNumber(phone));
     });
 
     const serviceDivs = services.map((service:any) => (

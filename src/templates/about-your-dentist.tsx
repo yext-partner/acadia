@@ -108,7 +108,7 @@
               </div>
             </div>
            </div>
-         <Footer footer={_site.c_footer}></Footer>
+         <Footer site={_site}></Footer>
        </body>
      </>
    );
