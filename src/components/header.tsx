@@ -1,13 +1,10 @@
 import * as React from "react";
 import Cta from "../components/cta";
 import searchConfig from "../search.config";
-
 import {
   AnswersHeadlessProvider,
   SandboxEndpoints,
 } from "@yext/answers-headless-react";
-
-// Search components
 import { SearchBar } from "@yext/answers-react-components";
 
 const Header = (props:any) => {
@@ -32,8 +29,12 @@ const Header = (props:any) => {
               <a className="link hidden md:block hover:no-underline" href="/new-patients">New Patients</a>
             </div>
             <div className="">
-              <AnswersHeadlessProvider {...searchConfig} headlessId="header">
-                <SearchBar
+              <AnswersHeadlessProvider 
+                  {...searchConfig} 
+                  headlessId="header"
+                  endpoints={SandboxEndpoints}
+                >                
+              <SearchBar
                   placeholder="Search for anything..."
                   customCssClasses={{
                     container: "text-black my-auto",
