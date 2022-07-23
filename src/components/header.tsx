@@ -1,6 +1,14 @@
 import * as React from "react";
 import Cta from "../components/cta";
+import searchConfig from "../search.config";
 
+import {
+  AnswersHeadlessProvider,
+  SandboxEndpoints,
+} from "@yext/answers-headless-react";
+
+// Search components
+import { SearchBar } from "@yext/answers-react-components";
 
 const Header = (props:any) => {
 
@@ -23,7 +31,21 @@ const Header = (props:any) => {
               <a className="link hidden md:block hover:no-underline" href="/payment-options">Payment Options</a>
               <a className="link hidden md:block hover:no-underline" href="/new-patients">New Patients</a>
             </div>
-            <div>
+            <div className="">
+              <AnswersHeadlessProvider {...searchConfig} headlessId="header">
+                <SearchBar
+                  placeholder="Search for anything..."
+                  customCssClasses={{
+                    container: "text-black my-auto",
+                  }}
+                  hideVerticalLinks
+                  onSearch={({ query, verticalKey }) => {
+                    window.location.href = `/search?query=${query}`;
+                  }}
+                />
+              </AnswersHeadlessProvider>
+            </div>
+            <div className="hidden sm:block">
               <p>{address.line1}</p>
               <p>{address.line2}</p>
               <p>{address.city}, {address.region}</p>

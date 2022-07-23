@@ -10,20 +10,22 @@
  import Markdown from 'markdown-to-jsx';
  import "../index.css";
  import {
-   Default,
-   GetPath,
-   TemplateConfig,
-   TemplateProps,
-   GetHeadConfig,
-   HeadConfig,
- } from "@yext/yext-sites-scripts";
+  Template,
+  GetPath,
+  GetRedirects,
+  TemplateConfig,
+  TemplateProps,
+  TemplateRenderProps,
+  GetHeadConfig,
+  HeadConfig,
+ } from "@yext/pages";
  
  export const config: TemplateConfig = {
    stream: {
      $id: "index-stream",
      filter: {
-      savedFilterIds: [
-        '933983808'
+      entityIds: [
+        'location'
       ],
     },
      fields: [
@@ -63,14 +65,14 @@
  };
  
  // 
- export const getPath: GetPath<TemplateProps> = (props) => {
+ export const getPath: GetPath<TemplateProps> = ({document}) => {
   return `index.html`;
 };
  
 //
- export const getHeadConfig: GetHeadConfig<TemplateProps> = (props): HeadConfig => {
-   return {
-     title: props.document.name,
+export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({relativePrefixToRoot, path, document}): HeadConfig => {
+  return {
+     title: document.name,
      charset: "UTF-8",
      viewport: "width=device-width, initial-scale=1",
      tags: [
@@ -85,8 +87,7 @@
  };
  
 
- const Index: Default<TemplateProps> = (props) => {
-   const { document } = props;
+ const Index: Template<TemplateRenderProps> = ({relativePrefixToRoot, path, document}) => {
    const {
      _site,
      name,

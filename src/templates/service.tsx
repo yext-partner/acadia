@@ -14,13 +14,15 @@ import * as React from "react";
  
  import "../index.css";
  import {
-   Default,
-   GetPath,
-   TemplateConfig,
-   TemplateProps,
-   GetHeadConfig,
-   HeadConfig,
- } from "@yext/yext-sites-scripts";
+  Template,
+  GetPath,
+  GetRedirects,
+  TemplateConfig,
+  TemplateProps,
+  TemplateRenderProps,
+  GetHeadConfig,
+  HeadConfig,
+ } from "@yext/pages";
  
 
  export const config: TemplateConfig = {
@@ -52,13 +54,13 @@ import * as React from "react";
    },
  };
  
- export const getPath: GetPath<TemplateProps> = (props) => {
-   return `${props.document.slug.toString()}`;
+ export const getPath: GetPath<TemplateProps> = ({document}) => {
+  return `${document.slug.toString()}`;
  };
  
- export const getHeadConfig: GetHeadConfig<TemplateProps> = (props): HeadConfig => {
-   return {
-     title: props.document.name,
+ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({relativePrefixToRoot, path, document}): HeadConfig => {
+  return {
+     title: document.name,
      charset: "UTF-8",
      viewport: "width=device-width, initial-scale=1",
      tags: [
@@ -73,8 +75,7 @@ import * as React from "react";
  };
  
 
- const Service: Default<TemplateProps> = (props) => {
-   const { document } = props;
+ const Service: Template<TemplateRenderProps> = ({relativePrefixToRoot, path, document}) => {
    const {
      _site,
      name,
