@@ -1,6 +1,6 @@
 const searchConfig = {
     experienceKey: "search",
-    apiKey: process.env.EXPERIENCE_KEY,
+    apiKey: "e85f0980c836989291b6a46a303b63e3",
     locale: "en",
   };
   
