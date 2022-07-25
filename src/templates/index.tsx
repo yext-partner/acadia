@@ -74,6 +74,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
   path,
   document,
 }): HeadConfig => {
+  console.log(document.logo);
   return {
     title: document.name,
     charset: "UTF-8",
@@ -82,7 +83,15 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
       {
         type: "meta",
         attributes: {
-          description: document.description,
+          name: "description",
+          content: "This is the best dentist in the area",
+        },
+      },
+      {
+        type: "meta",
+        attributes: {
+          name: "og:image",
+          content: document.logo.image.url,
         },
       },
     ],
@@ -123,9 +132,15 @@ const Index: Template<TemplateRenderProps> = ({
             "@context": "https://schema.org",
             "@type": "Dentist",
             name,
-            address: address,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: address.line1,
+              addressLocality: address.city,
+              addressRegion: address.region,
+              postalCode: address.postalCode,
+              addressCountry: address.countryCode,
+            },
             description: description,
-            openingHours: hours,
           }}
         />
         <Header site={_site}></Header>
