@@ -29,9 +29,7 @@ import * as React from "react";
    stream: {
      $id: "services-stream",
      filter: {
-      savedFilterIds: [
-        '935268770'
-      ],
+      savedFilterIds: [YEXT_PUBLIC_SERVICES_FILTER],
     },
      fields: [
        "id",
