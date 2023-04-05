@@ -29,15 +29,14 @@
   stream: {
     $id: "about-your-dentist",
     filter: {
-     entityIds: [
-       'about-your-dentist'
-     ],
+     entityIds: [YEXT_PUBLIC_ABOUT],
    },
     fields: [
       'id',
       'uid',
       'meta',
       'name',
+      'slug',
       'c_relatedFacility.c_relatedDoctors.name',
       'c_relatedFacility.c_relatedDoctors.headshot',
       'c_relatedFacility.c_relatedDoctors.c_richTextDescription'
@@ -49,9 +48,9 @@
   },
 };
  
-export const getPath: GetPath<TemplateProps> = ({document}) => {
-  return `about-your-dentist`;
- };
+export const getPath: GetPath<TemplateProps> = ({ document }) => {
+  return `${document.slug.toString()}`;
+};
  
  export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({relativePrefixToRoot, path, document}): HeadConfig => {
   return {

@@ -1,10 +1,15 @@
 module.exports = {
-  content: [
-    "./src/**/*.{html,js,jsx,ts,tsx}",
-    "./node_modules/@yext/answers-react-components/**/*.{js,ts,jsx,tsx}"
-  ],
+  content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        orange: "#ff9500",
+        "dark-orange": "#db8000",
+      },
+      scale: {
+        1.02: "1.02",
+      },
+    },
   },
   plugins: [],
 };

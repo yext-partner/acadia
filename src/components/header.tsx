@@ -1,18 +1,12 @@
 import * as React from "react";
 import Cta from "../components/cta";
-import searchConfig from "../search.config";
-import {
-  AnswersHeadlessProvider,
-  SandboxEndpoints,
-} from "@yext/answers-headless-react";
-import { SearchBar } from "@yext/answers-react-components";
 
 const Header = (props:any) => {
 
   const { site } = props;
   const name = site.name 
   const address = site.c_relatedFacility[0].address;
-  const logo = site.c_logoURL;
+  const logo = site.logo.image.url;
   const primaryColor = site.c_primaryColor;
   const secondaryColor = site.c_secondaryColor;
 
@@ -27,24 +21,6 @@ const Header = (props:any) => {
               <a className="link hidden md:block hover:no-underline" href="/about-your-dentist">About Your Dentist</a>
               <a className="link hidden md:block hover:no-underline" href="/payment-options">Payment Options</a>
               <a className="link hidden md:block hover:no-underline" href="/new-patients">New Patients</a>
-            </div>
-            <div className="">
-              <AnswersHeadlessProvider 
-                  {...searchConfig} 
-                  headlessId="header"
-                  endpoints={SandboxEndpoints}
-                >                
-              <SearchBar
-                  placeholder="Search for anything..."
-                  customCssClasses={{
-                    container: "text-black my-auto",
-                  }}
-                  hideVerticalLinks
-                  onSearch={({ query, verticalKey }) => {
-                    window.location.href = `/search?query=${query}`;
-                  }}
-                />
-              </AnswersHeadlessProvider>
             </div>
             <div className="hidden sm:block">
               <p>{address.line1}</p>

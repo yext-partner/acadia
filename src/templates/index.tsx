@@ -1,11 +1,13 @@
 import {
   GetHeadConfig,
   GetPath,
+  GetRedirects,
   HeadConfig,
   Template,
   TemplateConfig,
   TemplateProps,
   TemplateRenderProps,
+  TransformProps,
 } from "@yext/pages";
 import Markdown from "markdown-to-jsx";
 import * as React from "react";
@@ -25,7 +27,7 @@ export const config: TemplateConfig = {
   stream: {
     $id: "index-stream",
     filter: {
-      entityIds: ["location"],
+      entityIds: [YEXT_PUBLIC_CLINIC_ENTITY_ID],
     },
     fields: [
       "id",
@@ -37,6 +39,7 @@ export const config: TemplateConfig = {
       "mainPhone",
       "geocodedCoordinate",
       "logo",
+      "slug",
       "photoGallery",
       "insuranceAccepted",
       "websiteUrl",
@@ -63,9 +66,9 @@ export const config: TemplateConfig = {
   },
 };
 
-//
+
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return `index.html`;
+  return `${document.slug.toString()}`;
 };
 
 //

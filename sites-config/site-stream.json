@@ -1,13 +1,12 @@
 {
     "$id": "site-entity",
     "filter": {
-      "entityIds": [
-        "site-entity"
-      ]
+      "entityIds": ["YEXT_PUBLIC_SITE_ENTITY"]
     },
     "source": "knowledgeGraph",
     "fields": [
       "name",
+      "logo",
       "c_relatedFacility.name",
       "c_relatedFacility.address",
       "c_relatedFacility.mainPhone",
