@@ -95,7 +95,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
    return (
      <>
        <body className="font-main">
-         <Header site={_site}></Header>
+         <Header _site={_site}></Header>
            <div className="centered-container">
            <div className="breadcrumbs flex space-x-5 py-5">
               <a href="/" className="font-semibold hover:underline">Home</a>
@@ -108,7 +108,7 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
               </div>
             </div>
            </div>
-         <Footer site={_site}></Footer>
+         <Footer _site={_site}></Footer>
        </body>
      </>
    );
