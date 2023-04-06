@@ -92,7 +92,7 @@ import * as React from "react";
    return (
      <>
        <body className="font-main">
-         <Header site={_site}></Header>
+         <Header _site={_site}></Header>
            <div className="centered-container">
             <div className="breadcrumbs flex space-x-5 py-5">
               <a href="/" className="font-semibold hover:underline">Home</a>
@@ -104,7 +104,7 @@ import * as React from "react";
               <Markdown className="space-y-5">{updatedRTD}</Markdown>
             </div>
            </div>
-         <Footer site={_site}></Footer>
+         <Footer _site={_site}></Footer>
        </body>
      </>
    );

@@ -6,15 +6,15 @@ var currentTime = new Date()
 var year = currentTime.getFullYear()
 
 const Footer = (props:any) => {
-  const { site } = props;
-  const name = site.name 
-  const footer = site.c_footer;
-  const address = site.c_relatedFacility[0].address;
-  const mainPhone = site.c_relatedFacility[0].mainPhone; 
-  const services = site.c_relatedFacility[0].c_offeredServices;
-  const primaryColor = site.c_primaryColor;
-  const secondaryColor = site.c_secondaryColor;
-  const accessibility = site.c_accessibilityDescription;
+  const { _site } = props;
+  const name = _site.name 
+  const footer = _site.c_footer;
+  const address = _site.c_relatedFacility[0].address;
+  const mainPhone = _site.c_relatedFacility[0].mainPhone; 
+  const services = _site.c_relatedFacility[0].c_offeredServices;
+  const primaryColor = _site.c_primaryColor;
+  const secondaryColor = _site.c_secondaryColor;
+  const accessibility = _site.c_accessibilityDescription;
 
   const footerLinks = footer.map((link:any) => (
     <div>

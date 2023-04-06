@@ -172,7 +172,7 @@ const Index: Template<TemplateRenderProps> = ({
             <Markdown className="space-y-5">{c_richTextDescription}</Markdown>
           </div>}
         </div>
-        <Footer site={_site}></Footer>
+        <Footer _site={_site}></Footer>
       </body>
     </>
   );
