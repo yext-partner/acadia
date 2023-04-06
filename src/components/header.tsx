@@ -1,14 +1,18 @@
 import * as React from "react";
 import Cta from "../components/cta";
 
-const Header = (props:any) => {
+export interface HeaderProps {
+  _site?: any;
+}
 
-  const { site } = props;
-  const name = site.name 
-  const address = site.c_relatedFacility[0].address;
-  const logo = site.logo.image.url;
-  const primaryColor = site.c_primaryColor;
-  const secondaryColor = site.c_secondaryColor;
+const Header = (props: HeaderProps) => {
+
+  const { _site } = props;
+  const name = _site.name 
+  const address = _site.c_relatedFacility[0].address;
+  const logo = _site.logo.image.url;
+  const primaryColor = _site.c_primaryColor;
+  const secondaryColor = _site.c_secondaryColor;
 
 
   return (
@@ -17,16 +21,17 @@ const Header = (props:any) => {
         <div className="centered-container">
           <nav className="py-6 flex items-center justify-between text-white">
             <div className="flex items-center space-x-5">
-              <a className="hover:no-underline" href="/"><img src={logo} width="120" height="120"/></a>
+              {logo && <a className="hover:no-underline" href="/"><img src={logo} width="120" height="120"/></a>}
               <a className="link hidden md:block hover:no-underline" href="/about-your-dentist">About Your Dentist</a>
               <a className="link hidden md:block hover:no-underline" href="/payment-options">Payment Options</a>
               <a className="link hidden md:block hover:no-underline" href="/new-patients">New Patients</a>
             </div>
+            {address && 
             <div className="hidden sm:block">
               <p>{address.line1}</p>
               <p>{address.line2}</p>
               <p>{address.city}, {address.region}</p>
-            </div>
+            </div>}
           </nav>
         </div>
       </div>

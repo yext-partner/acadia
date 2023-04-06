@@ -146,7 +146,7 @@ const Index: Template<TemplateRenderProps> = ({
             description: description,
           }}
         />
-        <Header site={_site}></Header>
+        <Header _site={_site}></Header>
         <Banner
           name={name}
           color={_site.c_secondaryColor}
@@ -155,22 +155,22 @@ const Index: Template<TemplateRenderProps> = ({
         ></Banner>
         {c_promotion && <Promo text={c_promotion}></Promo>}
         <div className="centered-container">
-          <Doctors doctors={c_relatedDoctors}></Doctors>
-          <FeaturedServices
+          {c_relatedDoctors && <Doctors doctors={c_relatedDoctors}></Doctors>}
+          {c_featuredServices && <FeaturedServices
             name={name}
             services={c_featuredServices}
             address={address}
             phone={mainPhone}
             backgroundColor={_site.c_secondaryColor}
-          ></FeaturedServices>
-          <OfferedServices
+           />}
+          {c_offeredServices && <OfferedServices
             services={c_offeredServices}
             color={_site.c_secondaryColor}
-          ></OfferedServices>
-          <Insurances list={insuranceAccepted}></Insurances>
-          <div className="section space-y-5">
+           />}
+          {insuranceAccepted && <Insurances list={insuranceAccepted} />}
+          {c_richTextDescription && <div className="section space-y-5">
             <Markdown className="space-y-5">{c_richTextDescription}</Markdown>
-          </div>
+          </div>}
         </div>
         <Footer site={_site}></Footer>
       </body>
