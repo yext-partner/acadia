@@ -68,7 +68,7 @@ export const config: TemplateConfig = {
 
 
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return `${document.slug.toString()}`;
+  return document.slug;
 };
 
 //
@@ -150,7 +150,7 @@ const Index: Template<TemplateRenderProps> = ({
         <Banner
           name={name}
           color={_site.c_secondaryColor}
-          photo={photoGallery[0].image.url}
+          photo={photoGallery[0].image}
           mainPhone={mainPhone}
         ></Banner>
         {c_promotion && <Promo text={c_promotion}></Promo>}

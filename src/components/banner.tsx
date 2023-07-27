@@ -1,6 +1,8 @@
 import * as React from "react";
 import Cta from './cta';
 import { formatPhoneNumber, formatPhoneNumberIntl } from 'react-phone-number-input';
+import { Image } from "@yext/pages/components";
+
 
 interface BannerProps {
   name?: string;
@@ -11,17 +13,11 @@ interface BannerProps {
 
 const Banner = (props: BannerProps) => {
   const { name, color, photo, mainPhone } = props;
-  if (photo) {
-    let dynlUrl = photo.replace("a.mktgcdn.com", "dynl.mktgcdn.com");
-    let extension = photo.slice(-4);
-    // let small = dynlUrl.slice(0, dynlUrl.lastIndexOf("/")) + "/400x400" + extension;
-    // let medium = dynlUrl.slice(0, dynlUrl.lastIndexOf("/")) + "/400x400" + extension;
-  }
 
   return (
     <>
       <div className="flex justify-center md:justify-end items-center">
-        {photo && <img src={photo} />}
+        {photo && <Image image={photo}></Image>}
         <div className="absolute md:pr-8 lg:pr-16">
           <div className="hidden md:flex flex-col space-y-4 rounded-lg text-black text-center">
             <div className="text-3xl text-left md:block ">Welcome to</div>

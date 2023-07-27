@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "@yext/answers-react-components": "^0.2.0-beta.184",
+    "@yext/react-components": "^0.0.6",
     "classnames": "^2.3.1",
     "fetch-everywhere": "^1.0.5",
     "markdown-to-jsx": "^7.1.7",
